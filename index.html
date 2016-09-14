@@ -57,13 +57,24 @@ If your local folder is empty, all lessons and series will be downloaded!</p>
 
 <ul>
 <li>Clone this repo to a folder in your machine</li>
-<li>Add a config.ini with your options, there is a config.example.ini</li>
+<li>Change your info in .env.example and rename it to .env</li>
 <li><code>composer install</code></li>
 <li>
 <code>php start.php</code>and you are done!</li>
 </ul>
 
 <p>Also works in the browser, but is better from the cli because of the instant feedback</p>
+
+<h3>
+<a id="using-docker" class="anchor" href="#using-docker" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using Docker</h3>
+
+<ul>
+<li>Clone this repo to a folder in your machine</li>
+<li>Change your info in .env.example and rename it to .env</li>
+<li><code>docker build -t image-name .</code></li>
+<li>
+<code>docker run -d -v /host-path:/container-path-in-config.ini image-name</code> and the path should be absolute</li>
+</ul>
 
 <h2>
 <a id="troubleshooting" class="anchor" href="#troubleshooting" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Troubleshooting</h2>
