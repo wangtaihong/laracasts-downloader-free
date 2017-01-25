@@ -1,22 +1,5 @@
-# Laracasts Downloader
-[![Codacy Badge](https://www.codacy.com/project/badge/c97c63f5736f43c488cb69aa6af8fca9)](https://www.codacy.com/public/carlosmflorencio/laracasts-downloader)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/ac2fdb9a-222b-4244-b08e-af5d2f69845d/mini.png)](https://insight.sensiolabs.com/projects/ac2fdb9a-222b-4244-b08e-af5d2f69845d)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/iamfreee/laracasts-downloader/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/iamfreee/laracasts-downloader/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/iamfreee/laracasts-downloader/badges/build.png?b=master)](https://scrutinizer-ci.com/g/iamfreee/laracasts-downloader/build-status/master)
+# Laracasts Downloader Free without Login
 
-Downloads new lessons and series from laracasts if there are updates. Or the whole catalogue.
-
-**Working good at 17/12/2016**
-
-## Description
-Syncs your local folder with the laracasts website, when there are new lessons the app download it for you.
-If your local folder is empty, all lessons and series will be downloaded!
-
-A .skip file is used to prevent downloading deleted lessons for these with space problems. Thanks to @vinicius73
-
-Just call `php makeskips.php` before deleting the lessons.
-
-## An account with an active subscription is necessary!
 
 ## Requirements
 - PHP >= 5.4
@@ -26,17 +9,11 @@ Just call `php makeskips.php` before deleting the lessons.
 
 ## Installation
 - Clone this repo to a folder in your machine
-- Change your info in .env.example and rename it to .env
 - `composer install`
 - `php start.php`and you are done!
 
 Also works in the browser, but is better from the cli because of the instant feedback
 
-### Using Docker
-- Clone this repo to a folder in your machine
-- Change your info in .env.example and rename it to .env
-- `docker build -t image-name .`
-- `docker run -d -v /host-path:/container-path-in-config.ini image-name` and the path should be absolute
 
 ## Downloading specific series or lessons
 - You can use series and lessons names
@@ -46,7 +23,7 @@ Also works in the browser, but is better from the cli because of the instant fee
 ### Commands to download series
     php start.php -s "Series name example" -s "series-slug-example"
     php start.php --series-name "Series name example" -series-name "series-slug-example"
-    
+
 ### Command to download lessons
     php start.php -l "Lesson name example" -l "lesson-slug-example"
     php start.php --lesson-name "Lessons name example" --lesson-name "lesson-slug-example"
