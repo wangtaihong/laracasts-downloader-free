@@ -83,9 +83,9 @@ class Downloader
                 'failed_lesson' => 0
             ];
 
-            Utils::box('Authenticating');
+            // Utils::box('Authenticating');
 
-            $this->doAuth($options);
+            // $this->doAuth($options);
 
             Utils::box('Starting Collecting the data');
 

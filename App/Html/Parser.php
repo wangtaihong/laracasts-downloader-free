@@ -79,13 +79,16 @@ class Parser
      */
     public static function getDownloadLink($html)
     {
-        preg_match('(\'\/downloads\/.+\')', $html, $matches);
+        $parser = new Crawler($html);
+        return 'https:'.$parser->filter("source[label=HD]")->attr('src');
+
+/*        preg_match('(\'\/downloads\/.+\')', $html, $matches);
 
         if(isset($matches[0]) === false) {
             throw new NoDownloadLinkException();
         }
 
-        return LARACASTS_BASE_URL . substr($matches[0],1,-1);
+        return LARACASTS_BASE_URL . substr($matches[0],1,-1);*/
     }
 
     /**

@@ -166,11 +166,13 @@ class Resolver
         $name = $this->getNameOfEpisode($episodePage, $path);
         $number = sprintf("%02d", $episode);
         $saveTo = BASE_FOLDER . '/' . SERIES_FOLDER . '/' . $serie . '/' . $number . '-' . $name . '.mp4';
+        $downloadName = $number . '-' . $name . '.mp4';
+        $downloadUrl = fopen(BASE_FOLDER . '/' . SERIES_FOLDER . '/' . $serie . '/download.html', 'a+');
         Utils::writeln(sprintf("Download started: %s . . . . Saving on " . SERIES_FOLDER . '/' . $serie . ' folder.',
             $number . ' - ' . $name
         ));
 
-        return $this->downloadLessonFromPath($episodePage, $saveTo);
+        return $this->downloadLessonFromPath($episodePage, $saveTo, $downloadUrl, $downloadName);
     }
 
     /**
@@ -244,12 +246,13 @@ class Resolver
      * @param $saveTo
      * @return bool
      */
-    private function downloadLessonFromPath($html, $saveTo)
+    private function downloadLessonFromPath($html, $saveTo, $downloadUrl, $downloadName)
     {
         try {
-            $downloadUrl = Parser::getDownloadLink($html);
+            $finalUrl = Parser::getDownloadLink($html);
+/*            $downloadUrl = Parser::getDownloadLink($html);
             $viemoUrl = $this->getRedirectUrl($downloadUrl);
-            $finalUrl = $this->getRedirectUrl($viemoUrl);
+            $finalUrl = $this->getRedirectUrl($viemoUrl);*/
         } catch(NoDownloadLinkException $e) {
             Utils::write(sprintf("Can't download this lesson! :( No download button"));
 
@@ -268,15 +271,19 @@ class Resolver
         $retries = 0;
         while (true) {
             try {
-                $downloadedBytes = file_exists($saveTo) ? filesize($saveTo) : 0;
+                $str = '<a href="'.$finalUrl.'">'.$downloadName.'</a><br>';
+                fwrite($downloadUrl, $str."\n");
+                fclose($downloadUrl);
+                break;
+/*                $downloadedBytes = file_exists($saveTo) ? filesize($saveTo) : 0;
+
                 $req = $this->client->createRequest('GET', $finalUrl, [
-                    'save_to' => fopen($saveTo, 'a'),
+                    'save_to' => fopen($saveTo, 'a+'),
                     'verify' => false,
                     'headers' => [
                         'Range' => 'bytes=' . $downloadedBytes . '-'
                     ]
                 ]);
-
                 if (php_sapi_name() == "cli") { //on cli show progress
                     $req->getEmitter()->on('progress', function (ProgressEvent $e) use ($downloadedBytes) {
                         printf("> Total: %d%% Downloaded: %s of %s     \r",
@@ -286,8 +293,8 @@ class Resolver
                     });
                 }
 
-                $this->client->send($req); 
-                break;  
+                $this->client->send($req);
+                break;*/
             } catch (\Exception $e) {
                 if (!$this->retryDownload || ($this->retryDownload && $retries >= 3)) {
                     throw $e;
