@@ -1,4 +1,4 @@
-# Laracasts Downloader Free without Login
+# Laracasts Downloader Free (Without Login)
 
 
 ## Requirements
@@ -21,8 +21,13 @@ Also works in the browser, but is better from the cli because of the instant fee
 - You can download multiples series/lessons
 
 ### Commands to download series
-    php start.php -s "Series name example" -s "series-slug-example"
-    php start.php --series-name "Series name example" -series-name "series-slug-example"
+    php start.php -s "What's New in Laravel 5.4" -s "whats-new-in-laravel-5-4"
+
+Then Open the file in series folder'download.html', Download them with your browser
+Recommended Use Firefox with DownThemAll
+
+![Screen1](https://ww3.sinaimg.cn/large/006tNc79gy1fc2x2h8gvvj30tj0f20vl.jpg)
+![Screen2](https://ww2.sinaimg.cn/large/006tNc79gy1fc2x7oooszj30uv0id43j.jpg)
 
 ### Command to download lessons
     php start.php -l "Lesson name example" -l "lesson-slug-example"
